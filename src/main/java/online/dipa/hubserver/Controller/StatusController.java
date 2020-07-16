@@ -9,6 +9,7 @@ import online.dipa.hub_openapi.StatusApi;
 import online.dipa.hub_openapi.Status;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class StatusController implements StatusApi {
+
+    @CrossOrigin
     public ResponseEntity<Status> statusGet() {
-    return new ResponseEntity<Status>(new Status(), HttpStatus.OK);
+        return new ResponseEntity<Status>(new Status(), HttpStatus.OK);
     }
 }
