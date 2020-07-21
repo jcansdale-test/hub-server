@@ -6,7 +6,7 @@
 package online.dipa.hubserver.Service;
 
 import java.util.ArrayList;
-import online.dipa.hubserver.Model.MyAdresse;
+import online.dipa.hubserver.Model.MyAdresseDTO;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,14 +14,18 @@ import org.springframework.stereotype.Service;
  * @author user
  */
 @Service
-public class AdresseService {
+public class AdresseService { // implements AdresseServiceInterface
 
-    public Boolean addAdresse(final MyAdresse adresse) {
-        return true;
+    public MyAdresseDTO addAdresse(final MyAdresseDTO adresse) {
+        // Validierung besser hier.
+        return adresse;
     }
 
-    public ArrayList<MyAdresse> filterAdresse(final MyAdresse adresse) {
-        final ArrayList<MyAdresse> list = new ArrayList<MyAdresse>();
+    public ArrayList<MyAdresseDTO> filterAdresse(final MyAdresseDTO adresse) {
+        // Validierung besser hier.
+        final ArrayList<MyAdresseDTO> list = new ArrayList<MyAdresseDTO>();
+        list.add(adresse);
+        list.add(adresse);
         list.add(adresse);
         list.add(adresse);
         list.add(adresse);

@@ -12,9 +12,10 @@ import lombok.Data;
  * @author user
  */
 @Data
-public class MyAdresse {
+public class MyAdresseDTO {
     public String strasse;
-    public String nummer;
-    public String plz;
+    public String hausnummer;
+    public String hausnummerZusatz;
+    public String postleitzahl;
     public String ort;
 }

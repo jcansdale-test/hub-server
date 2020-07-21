@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import online.dipa.hub_openapi.Adresse;
 import online.dipa.hub_openapi.AdresseApi;
-import online.dipa.hubserver.Model.MyAdresse;
+import online.dipa.hubserver.Model.MyAdresseDTO;
 import online.dipa.hubserver.Service.AdresseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,22 +25,44 @@ public class AdresseController implements AdresseApi {
     @Autowired
     AdresseService adresseService;
 
+    private MyAdresseDTO map(Adresse adresse) {
+        final MyAdresseDTO myAdresseDTO = new MyAdresseDTO();
+        myAdresseDTO.setStrasse(adresse.getStrasse());
+        myAdresseDTO.setHausnummer(adresse.getHausnummer());
+        myAdresseDTO.setPostleitzahl(adresse.getPlz());
+        myAdresseDTO.setOrt(adresse.getOrt());
+        return myAdresseDTO;
+    }
+
+    private Adresse map(MyAdresseDTO adresseDTO) {
+        final Adresse adresse = new Adresse();
+        adresse.setStrasse(adresseDTO.getStrasse());
+        adresse.setHausnummer(adresseDTO.getHausnummer());
+        adresse.setPlz(adresseDTO.getPostleitzahl());
+        adresse.setOrt(adresseDTO.getOrt());
+        return adresse;
+    }
+
+    private ArrayList<Adresse> map(ArrayList<MyAdresseDTO> adressenDTO) {
+        final ArrayList<Adresse> adressen = new ArrayList<Adresse>();
+        adressenDTO.stream().forEach(myAdresseDTO -> adressen.add(map(myAdresseDTO)));
+        return adressen;
+    }
+
     @Override
     public ResponseEntity<List<Adresse>> adresseGet() {
-        final ArrayList<MyAdresse> myAdressen = adresseService.filterAdresse(new MyAdresse());
-        final ArrayList<Adresse> adressen = new ArrayList<Adresse>();
-        myAdressen.stream().forEach(myAdresse -> adressen.add(new Adresse()));
-        return ResponseEntity.ok(adressen); //To change body of generated methods, choose Tools | Templates.
+        return ResponseEntity.ok(map(adresseService.filterAdresse(new MyAdresseDTO())));
     }
 
     @Override
     public ResponseEntity<Void> adressePost(Adresse adresse) {
-        return AdresseApi.super.adressePost(adresse); //To change body of generated methods, choose Tools | Templates.
+        adresseService.addAdresse(map(adresse));
+        return null;
     }
 
     @Override
     public ResponseEntity<List<Adresse>> adressePut(Adresse adresse) {
-        return AdresseApi.super.adressePut(adresse); //To change body of generated methods, choose Tools | Templates.
+        return ResponseEntity.ok(map(adresseService.filterAdresse(map(adresse))));
     }
 
 }
