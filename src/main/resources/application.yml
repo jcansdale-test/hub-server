@@ -2,3 +2,9 @@ server:
   port: 9080
   servlet:
     context-path: /dipa/hub/0.1/
+    
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path=/swagger.json
