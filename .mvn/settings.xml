@@ -7,6 +7,14 @@
         <activeProfile>github</activeProfile>
     </activeProfiles>
 
+    <servers>
+        <server>
+            <id>github</id>
+            <username>token</username>
+            <password>${env.GITHUB_TOKEN}</password>
+        </server>
+    </servers>
+
     <profiles>
         <profile>
             <id>github</id>
