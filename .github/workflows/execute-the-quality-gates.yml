@@ -16,6 +16,6 @@ jobs:
         with:
           java-version: 1.8
       - name: Execute
-        run: mvn clean package -s .mvn/settings.xml
+        run: mvn clean package
         env:
           GITHUB_TOKEN: ${{ secrets.READ_PACKAGES_TOKEN }}
