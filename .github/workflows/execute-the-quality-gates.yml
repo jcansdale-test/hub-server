@@ -18,4 +18,4 @@ jobs:
       - name: Execute
         run: mvn clean package -s .mvn/settings.xml
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.READ_PACKAGES_TOKEN }}
